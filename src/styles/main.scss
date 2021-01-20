@@ -9,8 +9,11 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
   .calendar-#{ $day } {
     display: flex;
     flex-wrap: wrap;
+    position: relative;
+    top: 50vh;
+    transform: translate(0, -50%);
     width: 707px;
-    margin: 50px auto;
+    margin: auto;
   }
   .calendar-#{$day} > div {
     position: relative;
