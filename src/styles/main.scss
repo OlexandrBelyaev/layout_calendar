@@ -1,11 +1,16 @@
 $days: 28, 29, 30, 31;
 $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
+
+* {
+  box-sizing: border-box;
+}
+
 @each $day in $days {
   .calendar-#{ $day } {
     display: flex;
     flex-wrap: wrap;
-    width: 730px;
-    margin: auto;
+    width: 707px;
+    margin: 50px auto;
   }
   .calendar-#{$day} > div {
     position: relative;
@@ -14,7 +19,7 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
     bottom: 0;
     margin-left: 1px;
     margin-bottom: 1px;
-    box-sizing: border-box;
+
     background: #eee;
     border: 1px solid black;
     transition: all 0.5s ease-out;
@@ -31,6 +36,7 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
         position: absolute;
         top: 50%;
         left: 50%;
+
         font-family: Arial, Helvetica, sans-serif;
         color: black;
         font-size: 30px;
@@ -52,6 +58,7 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
 
 .calendar > div:hover {
   bottom: 20px;
+
   background-color: pink;
   cursor: pointer;
 }
