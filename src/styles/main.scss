@@ -5,17 +5,15 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
   box-sizing: border-box;
 }
 
-@each $day in $days {
-  .calendar-#{ $day } {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    top: 50vh;
-    transform: translate(0, -50%);
-    width: 707px;
-    margin: auto;
-  }
-  .calendar-#{$day} > div {
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  top: 50vh;
+  transform: translate(0, -50%);
+  width: 707px;
+  margin: auto;
+  div {
     position: relative;
     width: 100px;
     height: 100px;
@@ -27,34 +25,34 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
     border: 1px solid black;
     transition: all 0.5s ease-out;
   }
+}
+
+@each $day in $days {
   .calendar-#{$day} {
     div:first-child {
       margin-left: 0;
     }
-  }
-  @for $day_month from 1 to 32 {
-    .calendar {
-      div:nth-child(#{$day_month}):after {
-        content: "#{$day_month}";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-
-        font-family: Arial, Helvetica, sans-serif;
-        color: black;
-        font-size: 30px;
-        transform: translate(-50%, -50%);
-      }
-      div:nth-child(#{$day}):after {
-        content: "#{$day}";
-      }
+    div:nth-child(n+#{$day}) {
+      display: none;
+    }
+    div:nth-child(#{$day}) {
+      display: block;
     }
   }
-  .calendar-#{ $day} {
-    @for $j from $day +1 to 32 {
-      div:nth-child(#{$j}) {
-        display: none;
-      }
+}
+
+@for $day_month from 1 to 32 {
+  .calendar {
+    div:nth-child(#{$day_month}):after {
+      content: "#{$day_month}";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      font-family: Arial, Helvetica, sans-serif;
+      color: black;
+      font-size: 30px;
+      transform: translate(-50%, -50%);
     }
   }
 }
@@ -65,6 +63,7 @@ $week: ("mon": 0, "tue": 1, "wed": 2, "thu": 3, "fri": 4, "sat": 5, "sun": 6);
   background-color: pink;
   cursor: pointer;
 }
+
 @each $day_week,$num_day in $week {
   .calendar-#{ $day_week } {
     div:first-child {
